@@ -1,0 +1,186 @@
+/* Eric Meyer's CSS Reset
+   http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+   This is a Sass partial
+*/
+ 
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*===========================
+  ----Content Styles --------
+============================ */
+
+body {
+  font-family: verdana, sans-serif;
+  
+
+  header {
+    font-size: 3em;
+    width: 100%;
+    text-align: center;
+    padding: .5em 0em;
+    border-bottom: 3px solid #000;
+  }
+
+}
+
+.home-content {
+    width: 50%;
+    margin: 5.5em auto;
+    .home-intro {
+      margin: 0 auto;
+      width: 70%;
+      padding: 4em 1em;
+      line-height: 1.6em;
+    }
+    .btn {
+      display: block;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 0;
+      font-size: 1em;
+      width: 11em;
+      height: 2em;
+    }
+  }
+
+.countries-container {
+  width: 75%;
+  border: 1px solid #000;
+  height: 30em;
+  background-color: #dedede;
+  overflow: scroll;
+  margin: 3em auto;
+  table {
+    width: 100%;
+    margin-top: 2em;
+    .header-row {
+      margin-top: -2em;
+      background-color: #d3d3d3;
+      border-bottom: 1px solid #000;
+      text-align: left;
+      position: absolute;
+      width: 75%;
+    }
+    .country-row {
+      height: 2em;
+      border-right: 1px solid #000;
+      &:nth-of-type(odd) {
+      background-color: #fff;
+    }
+    }
+    th {
+      padding-left: .7em;
+      padding: .5em;
+      border-right: 1px solid #000;
+      width: 159px;
+      
+    }
+    td {
+      height: 2em;
+      width: 121px;
+      border-right: 1px solid #000;
+      padding-top: .7em;
+      padding-left: .5em;
+    }
+  }
+}
+.btn {
+  display: block;
+  margin: 0 auto 2em auto;
+  background: #fff;
+  border-radius: 0;
+  font-size: 1em;
+  width: 11em;
+  height: 2em;
+}
+
+.detail-container {
+  width: 45%;
+  margin: 3em auto;
+  h1 {
+    font-size: 2.5em;
+  }
+  ul {
+    border: 1px solid #000;
+    line-height: 2em;
+    margin: 2em auto;
+    padding: 1em;
+  }
+  .label-list {
+    text-align: right;
+    display: inline-block;
+    margin: 3em auto auto 5em;
+  }
+  .stats-list {
+    text-align: left;
+    display: inline-block;
+  }
+}
+.btn {
+  margin-right: -9em;
+  display: inline-block;
+  width: 10em;
+  margin-left: 8em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

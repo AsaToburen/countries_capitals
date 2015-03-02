@@ -1,0 +1,25 @@
+{
+  "name": "countries_capitals",
+  "version": "0.0.0",
+  "authors": [
+    "Asa Toburen <atopettit@gmail.com>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.14",
+    "angular-route": "~1.3.14",
+    "angular-animate": "~1.3.14"
+  }
+}
