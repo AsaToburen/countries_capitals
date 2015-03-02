@@ -3,6 +3,9 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
   .constant('SEARCH_PATH', 'http://api.geonames.org/searchJSON?') 
   .constant('COUNTRY_PATH', '/?q={{ q }}')
   .constant('ENDSTRING', '&name_equals={{ q }}&country={{}}&isNameRequired=true&username=atoburen')
+ 
+
+ // Working example query string
  // http://api.geonames.org/searchJSON?q=Kabul&name_equals=Kabul&country=AF&isNameRequired=true&username=atoburen
 
 
@@ -17,33 +20,6 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
             return defer.promise;
         }
     }])
-.factory('detailRequest', ['$http', '$q', 'SEARCH_PATH',
-    function($http, $q, SEARCH_PATH) {
-      return function(path) {
-        var defer = $q.defer();
-        $http.get(COUNTRIES_URL + path, {cache : false})
-          .success(function(data) {
-            defer.resolve(data);
-          })
-          return defer.promise;
-    }
-  }])
-  .factory('getCountryPath',    ['detailRequest', '$interpolate', 'COUNTRY_PATH', 'ENDSTRING',
-    function(detailRequest,   $interpolate,   COUNTRY_PATH, ENDSTRING) {
-    return function(q) {
-      var path;
-      if(q.match(/^\d+$/)) {
-        path = $interpolate(COUNTRY_PATH)({
-          q : q
-        });
-      } else {
-        path = $interpolate(ENDSTRING)({
-          q : q
-        });
-      }
-      return detailRequest(path);
-    }
-  }])
   .config([ '$routeProvider', function( $routeProvider){
     $routeProvider.when('/', {
       templateUrl: 'home.html'
@@ -57,22 +33,10 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
       }]
     }
     })
-    .when('/countries/:country/capital', {
-      templateUrl: './countries/countryDetail.html',
-      controller: 'CountryDetailCtrl',
-      resolve : {
-        countryDetail : ['getCountryPath', '$route',  function(getCountryPath, $route) {
-          console.log($route);
-          //return getCountryPath($route.current.params.country);
-      }]
-    }
+    .when('countries/:country/:capital', {
+      templateUrl: '.countries/countryDetail.html',
+      controller: 'CountryDetailCtrl'
     })
-    .when('/error', {
-        template : '<p>Error Page Not Found</p>'
-    })
-        .otherwise({
-            redirectTo : '/error'
-        });
   }])
   .run(function($rootScope, $location, $timeout) {
     $rootScope.$on('$routeChangeError', function() {
@@ -109,26 +73,7 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
     }])
 
 
-  .controller('CountryDetailCtrl', ['$scope', '$http', 'countriesData', function($scope, $http, countriesData) {
- 
-   // $http.get('http://api.geonames.org/searchJSON?q=Kabul&name_equals=Kabul&country=AF&isNameRequired=true&username=atoburen').success(function(data) {
-   //         $scope.data = data;
-   //         console.log(data);
-   //       });
-//
-
- //  var getInfo = function($http) {
- //  $http.get('http://api.geonames.org/searchJSON?q=afganistan&country=AF&name_equals=Kabul&isNameRequired=true&username=atoburen');
- //    function success(data) {
- //      console.log('success');
- //      console.log(data);
- //    }
- //    function error(error, status, headers, config){
- //      console.log('error');
- //     }
- //   }
-///
- //       getInfo();
+  .controller('CountryDetailCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
     
     }]);
 
