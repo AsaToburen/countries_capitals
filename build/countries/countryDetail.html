@@ -1,0 +1,53 @@
+<section class="detail-container">
+  <h1 class="country-title">{{country.countryName}}</h1>
+ 
+<!--
+  <section>
+    <h4>Country Data</h4>
+    <pre>{{country | json}}</pre>
+  </section>
+
+  <br />
+
+
+  <section>
+    <h4>Capital Data</h4>
+    <pre>{{capitals | json}}</pre>
+  </section>
+
+  <br />
+
+  <section>
+    <h4>Neighbor Data</h4>
+    <pre>{{neighbors | json}}</pre>
+  </section>
+
+  <br />
+   -->
+
+  <ul class="label-list">
+    <li>Population of Country:</li>
+    <li>Area:</li>
+    <li>Capital:</li>
+    <li>Population of Capital:</li>
+    <li>Neighbors:</li>
+    <li>{{State}}</li>
+  </ul>
+  <ul class="stats-list">
+    <li>{{country.population | number}}</li>
+    <li>{{country.areaInSqKm | number}} SqKm</li>
+    <li>{{country.capital}}</li>
+    <li>{{capitals[0].population | number}}</li>
+    <li><a ng-href="#/countries/{{neighbors[0].countryCode}}/{{neighbors[0].name}}">{{neighbors[0].name}}</a>
+   <a ng-href="#/countries/{{neighbors[1].countryCode}}/{{neighbors[1].name}}">{{neighbors[1].name}}</a>
+    <a ng-href="#/countries/{{neighbors[2].countryCode}}/{{neighbors[2].name}}">{{neighbors[2].name}}</a></li>
+  </ul>
+  <div class="imgContainer">
+      <img id='myImage' src="http://www.geonames.org/img/country/250/{{country.countryCode}}.png" />
+      <img class="flag" width="200px" src="http://www.geonames.org/flags/x/{{country.countryCode | lowercase}}.gif" />
+  </div>
+  
+
+  <a href="/#/" class="detail-btn">Home</a>
+  <a href="#/countries" class="detail-btn">Browse Countries</a>
+</section>
