@@ -1,20 +1,28 @@
 <div class="countries-container">
   <table>
-    <tr class="header-row">
-      <th>Name</th>
-      <th>Country Code</th>
-      <th>Capital</th>
-      <th>Area in Km2</th>
-      <th>Population</th>
-      <th>Continent</th>
-    </tr>
-    <tr class="country-row" ng-repeat="country in countries">
-        <td><a ng-href="#!/countries/{{country.name}}/{{country.capital}}">{{country.name}}</a></td>
-        <td>{{country.code}}</td>
-        <td>{{country.capital}}</td>
-        <td>{{country.area | number}}</td>
-        <td>{{country.population | number}}</td>
-        <td>{{country.continent}}</td>
+    <!-- This should be in a thead -->
+    <thead>
+      <tr class="header-row">
+        <th>Name</th>
+        <th>Country Code</th>
+        <th>Capital</th>
+        <th>Area in Km2</th>
+        <th>Population</th>
+        <th>Continent</th>
+      </tr>
+    </thead>
+    <!-- This should be in a tbody -->
+    <tbody>
+      <tr class="country-row" ng-repeat="country in countries">
+          <!-- 3) Invalid HREF here, shouldn't have the ! and we need to use country code -->
+          <!--<td><a ng-href="#!/countries/{{country.name}}/{{country.capital}}">{{country.name}}</a></td>-->
+          <td><a ng-href="#/countries/{{country.code}}/{{country.capital}}">{{country.name}}</a></td>
+          <td>{{country.code}}</td>
+          <td>{{country.capital}}</td>
+          <td>{{country.area | number}}</td>
+          <td>{{country.population | number}}</td>
+          <td>{{country.continent}}</td>
+      </tr>
     </tr>
   </table>
 </div>

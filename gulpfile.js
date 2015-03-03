@@ -35,7 +35,8 @@ gulp.task('watch', function() {
 
 gulp.task('connect', function() {
   connect.server({
-    root: 'app/'
+    root: 'app/',
+    port: 3000 // Had an issue with default of 8080
   });
 });
 

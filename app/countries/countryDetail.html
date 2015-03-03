@@ -1,5 +1,28 @@
 <section class="detail-container">
   <h1 class="country-title">Country Name</h1>
+
+  <section>
+    <h4>Country Data</h4>
+    <pre>{{country | json}}</pre>
+  </section>
+
+  <br />
+
+  <section>
+    <h4>Capital Data</h4>
+    <pre>{{capitals | json}}</pre>
+  </section>
+
+  <br />
+
+  <section>
+    <h4>Neighbor Data</h4>
+    <pre>{{neighbors | json}}</pre>
+  </section>
+
+  <br />
+
+  <!--
   <ul class="label-list">
     <li>Population of Country:</li>
     <li>Area:</li>
@@ -16,6 +39,7 @@
     <li>{{}} Neighbors</li>
     <li>{{State}}</li>
   </ul>
+  -->
   <button class="btn">Home</button>
   <button class="btn">Browse Countries</button>
 </section>
