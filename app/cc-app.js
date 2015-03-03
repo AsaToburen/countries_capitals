@@ -1,13 +1,7 @@
 angular.module('ccApp', ['ngRoute', 'ngAnimate'])
   .constant('COUNTRIES_URL', 'http://api.geonames.org/countryInfoJSON?lang=en&username=atoburen' )
-  .constant('SEARCH_PATH', 'http://api.geonames.org/searchJSON?') 
-  .constant('COUNTRY_PATH', '/?q={{ q }}')
-  .constant('ENDSTRING', '&name_equals={{ q }}&country={{}}&isNameRequired=true&username=atoburen')
- 
-
- // Working example query string
- // http://api.geonames.org/searchJSON?q=Kabul&name_equals=Kabul&country=AF&isNameRequired=true&username=atoburen
-
+  .constant('SEARCH_PATH', 'http://api.geonames.org/searchJSON?q=') 
+  .constant('ENDSTRING', '&isNameRequired=true&username=atoburen')
 
 .factory('ccRequest', ['$http', '$q', 'COUNTRIES_URL',
     function($http,   $q,  COUNTRIES_URL) {
@@ -20,7 +14,20 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
             return defer.promise;
         }
     }])
-  .config([ '$routeProvider', function( $routeProvider){
+.factory('detailRequest', ['$http', '$q', 'SEARCH_PATH', 'ENDSTRING',
+  function($http, $q, SEARCH_PATH, ENDSTRING) {
+    return function(q) {
+      var url = SEARCH_PATH + q + '&name_equals=' + q + ENDSTRING;
+      var defer = $q.defer();
+      $http.get(url, { cache : false})
+        .success(function(data) {
+            defer.resolve(data);
+          })
+        return defer.promise;
+      }
+}])
+.factory('neighborRequest', [])
+  .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {
       templateUrl: 'home.html'
     })
@@ -30,30 +37,24 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
       resolve : {
         countriesData : ['ccRequest', '$route', function(ccRequest, $route) {
         return ccRequest($route.data);
-      }]
-    }
+        }]
+      }
     })
-    .when('countries/:country/:capital', {
-      templateUrl: '.countries/countryDetail.html',
-      controller: 'CountryDetailCtrl'
-    })
+    .when('/countries/:country/capital', {
+      templateUrl: './countries/countryDetail.html',
+      controller: 'CountryDetailCtrl',
+      resolve : {
+        country : ['detailRequest', '$route', function(detailRequest, $route) {
+          var country = $route.current.params.country;
+          return detailRequest(country);
+       }]
+      }
+    });
   }])
-  .run(function($rootScope, $location, $timeout) {
-    $rootScope.$on('$routeChangeError', function() {
-      $location.path("/error");
-    });
-    $rootScope.$on('$routeChangeStart', function() {
-      $rootScope.isLoading = true;
-    });
-    $rootScope.$on('$routeChangeSuccess', function() {
-      $timeout(function() {
-        $rootScope.isLoading = false;
-      }, 500);
-    });
-  })
   .controller('CountryCtrl', ['$scope', 'countriesData', function($scope, countriesData) {
     var countryObjs = countriesData.geonames,
      countries = [];
+     console.log(countryObjs);
     parseData = function(ccData, countryArray) {
       for(i = 0; i<250; i++) {
         countryArray.push({
@@ -72,9 +73,14 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
     console.log(countries);
     }])
 
-
-  .controller('CountryDetailCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
-    
+  .controller('CountryDetailCtrl', ['$scope', 'country', function($scope, country) {
+        var countryData = country.geonames[0];
+        $scope.detail = {
+          "name" : countryData.countryName,
+          "population" : countryData.population
+        
+        };
+        console.log(countryData);
     }]);
 
 

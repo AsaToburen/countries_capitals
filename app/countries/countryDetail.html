@@ -1,5 +1,5 @@
 <section class="detail-container">
-  <h1 class="country-title">Country Name</h1>
+  <h1 class="country-title">{{detail.name}}</h1>
   <ul class="label-list">
     <li>Population of Country:</li>
     <li>Area:</li>
@@ -9,7 +9,7 @@
     <li>{{State}}</li>
   </ul>
   <ul class="stats-list">
-    <li>Population of Country:</li>
+    <li>{{detail.population | number}}</li>
     <li>Area:</li>
     <li>Capital:</li>
     <li>Population of Capital</li>
