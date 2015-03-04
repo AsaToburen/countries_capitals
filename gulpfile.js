@@ -18,6 +18,7 @@ gulp.task('usemin', function() {
     .pipe(usemin({
       css: [minifyCss(), 'concat', rev()],
       js: [uglify(), rev()],
+      js0: [uglify(), rev()],
       js1: [uglify(), rev()]
     }))
     .pipe(gulp.dest('build/'));
