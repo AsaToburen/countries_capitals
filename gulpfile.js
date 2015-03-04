@@ -17,7 +17,8 @@ gulp.task('usemin', function() {
   gulp.src('./app/index.html')
     .pipe(usemin({
       css: [minifyCss(), 'concat', rev()],
-      js: [uglify(), rev()]
+      js: [uglify(), rev()],
+      js1: [uglify(), rev()]
     }))
     .pipe(gulp.dest('build/'));
 });

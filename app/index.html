@@ -2,7 +2,9 @@
 <html lang="en" ng-app="ccApp">
 <head>
   <meta charset="UTF-8">
+   <!-- build:css style.css -->
   <link rel="stylesheet" href="./cc-app.css">
+   <!-- endbuild -->
   <title>Countries and Capitals</title>
 </head>
 <body>
@@ -10,8 +12,12 @@
     <span ng-class="{loading: isLoading}"></span>
     <section ng-view></section>
 </body>
+ <!-- build:js js/lib.js -->
 <script type="text/javascript" src="./bower_components/angular/angular.js"></script>
 <script type="text/javascript" src="./bower_components/angular-route/angular-route.js"></script>
 <script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
+<!-- endbuild -->
+ <!-- build:js1 js/app.js -->
 <script type="text/javascript" src="./cc-app.js"></script>
+<!-- endbuild -->
 </html>
