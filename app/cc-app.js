@@ -212,7 +212,7 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
             redirectTo : '/'
         });
   }])
-  .run(function($rootScope, $location, $timeout) {
+  .run(['$rootScope', '$location', '$timeout', function($rootScope, $location, $timeout) {
     $rootScope.$on('$routeChangeError', function() {
       $location.path("/error");
     });
@@ -224,7 +224,7 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
         $rootScope.isLoading = false;
       }, 2000);
     });
-  })
+  }])
   .controller('CountryCtrl', ['$scope', 'countriesData', function($scope, countriesData) {
     $scope.countries = countriesData;
   }])

@@ -12,10 +12,12 @@
     <span ng-class="{loading: isLoading}"></span>
     <section ng-view></section>
 </body>
-
+ <!-- build:vendor js/lib.js -->
 <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
-<script type="text/javascript" src="./bower_components/angular-route/angular-route.min.js"></script>
-<script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
+<script type="text/javascript" src="./bower_components/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="./bower_components/angular-animate/angular-animate.min.js"></script>
+<!-- endbuild -->
+
  <!-- build:js js/app.js -->
 <script type="text/javascript" src="./cc-app.js"></script>
 <!-- endbuild -->

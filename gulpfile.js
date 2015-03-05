@@ -7,16 +7,31 @@ var usemin = require('gulp-usemin');
 var rev = require('gulp-rev');
 var clean = require('gulp-clean');
 var sass = require('gulp-ruby-sass');
+var imagemin = require('gulp-imagemin');
+
 
 gulp.task('copy-html-files', function() {
   gulp.src(['./app/**/*.html', '!./app/index.html'], {base: './app'})
     .pipe(gulp.dest('build/'));
 });
 
+
+gulp.task('imagemin', function () {
+    return gulp.src('./app/images/*')
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}]
+        }))
+        .pipe(gulp.dest('./app/images'));
+});
+
+// add image-min 
+
 gulp.task('usemin', function() {
   gulp.src('./app/index.html')
     .pipe(usemin({
       css: [minifyCss(), 'concat', rev()],
+      vendor: [ rev() ],
       js: [uglify(), rev()]
     }))
     .pipe(gulp.dest('build/'));
@@ -41,4 +56,4 @@ gulp.task('connect', function() {
 
 // Default Task
 gulp.task('default', ['watch', 'compile-sass', 'connect']);
-gulp.task('build', ['copy-html-files', 'usemin']);
+gulp.task('build', ['copy-html-files', 'imagemin', 'usemin']);
