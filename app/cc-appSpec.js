@@ -21,3 +21,37 @@ describe('testing routes', function() {
     }));
 });
 
+describe('Routes w/ resolves', function() {
+  var httpMock = {};
+
+  beforeEach(module('ccApp', function($provide) {
+    $provide('$http', httpMock);
+  }));
+
+  var $location, $route, $rootScope;
+
+  beforeEach(inject(function(_$location_, _$route_, _$routeScope_, $httpBackend, $templateCache){
+    $location = _$location_;
+    $route = _$route_;
+    $routeScope = _$rootScope_;
+
+
+    $templateCache.put('app/home.html', 'home HTML');
+
+    httpMock.get = jasmine.createSpy('spy').and.returnValue('test');
+  }));
+
+
+it('should load the home page on successful load of /', 
+        inject(function($injector){
+            expect($location.path()).toBe( '' );
+            $location.path('/');
+
+            $rootScope.$digest();
+
+            expect($location.path()).toBe( '/' );
+
+            // We need to do $injector.invoke to resolve dependencies
+            expect($injector.invoke($route.current.resolve.allowAccess)).toBe('test');
+    }));
+});
