@@ -36,7 +36,7 @@ describe('Routes w/ resolves', function() {
     $routeScope = _$rootScope_;
 
 
-    $templateCache.put('app/home.html', 'home HTML');
+    $templateCache.put('home.html', 'home HTML');
 
     httpMock.get = jasmine.createSpy('spy').and.returnValue('test');
   }));
@@ -52,6 +52,6 @@ it('should load the home page on successful load of /',
             expect($location.path()).toBe( '/' );
 
             // We need to do $injector.invoke to resolve dependencies
-            expect($injector.invoke($route.current.resolve.allowAccess)).toBe('test');
+            expect($injector.invoke($route.current.resolve.countriesData)).toBe('test');
     }));
 });
