@@ -21,37 +21,33 @@ describe('testing routes', function() {
     }));
 });
 
-describe('Routes w/ resolves', function() {
-  var httpMock = {};
 
-  beforeEach(module('ccApp', function($provide) {
-    $provide('$http', httpMock);
-  }));
+/* Filter Testing */
 
-  var $location, $route, $rootScope;
+describe('number filters', function() {
 
-  beforeEach(inject(function(_$location_, _$route_, _$routeScope_, $httpBackend, $templateCache){
-    $location = _$location_;
-    $route = _$route_;
-    $routeScope = _$rootScope_;
+var filter;
+ 
+  beforeEach(function (){
+    module.apply('ccApp');
 
+    inject(function ($injector) {
+      filter = $injector.get('$filter')('number');
+    });
+  });
 
-    $templateCache.put('home.html', 'home HTML');
+    it('should place comma after every third digit', function() {
 
-    httpMock.get = jasmine.createSpy('spy').and.returnValue('test');
-  }));
+      expect(filter("123456789")).toEqual("123,456,789");
 
+      });
 
-it('should load the home page on successful load of /', 
-        inject(function($injector){
-            expect($location.path()).toBe( '' );
-            $location.path('/');
-
-            $rootScope.$digest();
-
-            expect($location.path()).toBe( '/' );
-
-            // We need to do $injector.invoke to resolve dependencies
-            expect($injector.invoke($route.current.resolve.countriesData)).toBe('test');
-    }));
 });
+
+
+// http mock ///
+
+// not actually macking the http call
+//make payload that works like api call
+// create an expected payload
+  //something similar to the data that you expect to have returned from the call to the api/
