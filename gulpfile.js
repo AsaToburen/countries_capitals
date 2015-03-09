@@ -22,7 +22,7 @@ gulp.task('imagemin', function () {
             progressive: true,
             svgoPlugins: [{removeViewBox: false}]
         }))
-        .pipe(gulp.dest('./app/images'));
+        .pipe(gulp.dest('build/'));
 });
 
 // add image-min 

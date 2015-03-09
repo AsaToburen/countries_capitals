@@ -8,6 +8,7 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
     function($http, $q, COUNTRIES_URL, SEARCH_PATH, NEIGHBORS_PATH) {
 
       var c = {
+        
         countries: [],
 
         getAll: function() {
