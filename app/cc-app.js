@@ -1,3 +1,4 @@
+
 angular.module('ccApp', ['ngRoute', 'ngAnimate'])
   .constant('COUNTRIES_URL', 'http://api.geonames.org/countryInfoJSON')
   .constant('SEARCH_PATH', 'http://api.geonames.org/searchJSON')
@@ -181,36 +182,36 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 
     .when('/countries/:country/:capital', {
 
-      templateUrl: './countries/countryDetail.html',
-      controller: 'CountryDetailCtrl',
-      resolve: {
+        templateUrl: './countries/countryDetail.html',
+        controller: 'CountryDetailCtrl',
+        resolve: {
 
-        country: ['$route', 'ccRequest', function($route, ccRequest) {
-          var country = $route.current.params.country;
+          country: ['$route', 'ccRequest', function($route, ccRequest) {
+            var country = $route.current.params.country;
 
-          return ccRequest.getCountry(country);
-        }],
+            return ccRequest.getCountry(country);
+          }],
 
-        capitals: ['$route', 'ccRequest', function($route, ccRequest) {
+          capitals: ['$route', 'ccRequest', function($route, ccRequest) {
 
-          var country = $route.current.params.country;
-          var capital = $route.current.params.capital;
+            var country = $route.current.params.country;
+            var capital = $route.current.params.capital;
 
-          return ccRequest.getCapitals(country, capital);
-        }],
+            return ccRequest.getCapitals(country, capital);
+          }],
 
-        neighbors: ['$route', 'ccRequest', function($route, ccRequest) {
-          var country = $route.current.params.country;
-          return ccRequest.getNeighbors(country);
-        }]
-      }
-    })
-    .when('/error', {
-        template : '<p>Error Page Not Found</p>'
-    })
-        .otherwise({
-            redirectTo : '/'
-        });
+          neighbors: ['$route', 'ccRequest', function($route, ccRequest) {
+            var country = $route.current.params.country;
+            return ccRequest.getNeighbors(country);
+          }]
+        }
+      })
+      .when('/error', {
+        template: '<p>Error Page Not Found</p>'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
   }])
   .run(['$rootScope', '$location', '$timeout', function($rootScope, $location, $timeout) {
     $rootScope.$on('$routeChangeError', function() {
@@ -228,7 +229,6 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
   .controller('CountryCtrl', ['$scope', 'countriesData', function($scope, countriesData) {
     $scope.countries = countriesData;
   }])
-
 
 .controller('CountryDetailCtrl', ['$scope', 'country', 'capitals', 'neighbors', function($scope, country, capitals, neighbors) {
   $scope.country = country;
