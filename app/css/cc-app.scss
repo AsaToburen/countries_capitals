@@ -106,7 +106,7 @@ body {
   height: 3px;
   width: 100%;
   z-index: 1000;
-  background-image: url('./images/loadBar.gif');
+  background-image: url('../images/loadBar.gif');
   transition: all linear 1s;
   opacity:1;
   display: block;
@@ -115,7 +115,7 @@ body {
   width: 100%;
   height: 5px;
   opacity: 0;
-  background-image: url('./images/loadBar.gif');
+  background-image: url('../images/loadBar.gif');
 }
 }
 
@@ -159,7 +159,8 @@ body {
       padding-left: .7em;
       padding: .5em;
       border-right: 1px solid #000;
-      width: 159px;
+      width: 157px;
+
       
     }
     td {

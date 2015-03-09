@@ -40,7 +40,7 @@ gulp.task('usemin', function() {
 gulp.task('compile-sass', function () {
     return sass('./app/css/cc-app.scss')
         // Convert sass into css
-        .pipe(gulp.dest('./app'));
+        .pipe(gulp.dest('./app/css/cc-app.css'));
 });
 
 gulp.task('watch', function() {
