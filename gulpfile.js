@@ -38,13 +38,13 @@ gulp.task('usemin', function() {
 });
 
 gulp.task('compile-sass', function () {
-    return sass('./app/cc-app.scss')
+    return sass('./app/css/cc-app.scss')
         // Convert sass into css
         .pipe(gulp.dest('./app'));
 });
 
 gulp.task('watch', function() {
-  gulp.watch('app/*.scss', ['compile-sass']);
+  gulp.watch('app/css/*.scss', ['compile-sass']);
 });
 
 

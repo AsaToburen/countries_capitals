@@ -90,6 +90,7 @@ describe('ccApp', function() {
       ccRequest.getAll().then(function(data) {
         $rootScope.$digest();
         $httpBackend.flush();
+        
         expect(data).toBe(mockCountriesPayload);
       });
     });
@@ -97,8 +98,8 @@ describe('ccApp', function() {
 
 it('ccRequest should make a successful request from the country endpoint.', function(){
     inject(function(ccRequest, $httpBackend) {
-      
-      $httpBackend.expectGET('http://jsonplaceholder.typicode.com/users').respond(200);
+
+      $httpBackend.expectGET('http://api.geonames.org/countryInfoJSON?username=atoburen').respond(200);
       
       ccRequest.getCountry().then(function(data) {
         $rootScope.$digest();
@@ -111,7 +112,7 @@ it('ccRequest should make a successful request from the country endpoint.', func
 it('ccRequest should make a successful request from the capitals endpoint.', function(){
     inject(function(ccRequest, $httpBackend) {
       
-      $httpBackend.expectGET('http://jsonplaceholder.typicode.com/users').respond(200);
+      $httpBackend.expectGET('http://api.geonames.org/countryInfoJSON?username=atoburen').respond(200);
       
       ccRequest.getCapitals().then(function(data) {
         $rootScope.$digest();
@@ -124,7 +125,7 @@ it('ccRequest should make a successful request from the capitals endpoint.', fun
 it('ccRequest should make a successful request from the neighbors endpoint.', function(){
     inject(function(ccRequest, $httpBackend) {
       
-      $httpBackend.expectGET('http://jsonplaceholder.typicode.com/users').respond(200);
+      $httpBackend.expectGET('http://api.geonames.org/countryInfoJSON?username=atoburen').respond(200);
       
       ccRequest.getNeighbors().then(function(data) {
         $rootScope.$digest();
