@@ -26,7 +26,6 @@ describe('testing routes', function() {
     }));
 });
 
-
 /* Filter Testing */
 
 describe('number filters', function() {
@@ -37,6 +36,7 @@ var filter;
     module.apply('ccApp');
 
     inject(function ($injector) {
+
       filter = $injector.get('$filter')('number');
     });
   });
@@ -82,63 +82,61 @@ describe('ccApp', function() {
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  it('ccRequest should request data successfully from countries endpoint', function(){
+  it('ccRequest should request data successfully from the countries endpoint', function(){
     inject(function(ccRequest, $httpBackend) {
       
-      $httpBackend.expectGET('http://jsonplaceholder.typicode.com/users').respond(mockCountriesPayload);
+      $httpBackend.expectGET('http://jsonplaceholder.typicode.com/users').respond(200);
       
-      ccRequest.getAll().then(function(data){
-
+      ccRequest.getAll().then(function(data) {
+        $rootScope.$digest();
+        $httpBackend.flush();
         expect(data).toBe(mockCountriesPayload);
       });
     });
   });
 
-it('ccRequest should make a successful request to the country endpoint.', function(){
+it('ccRequest should make a successful request from the country endpoint.', function(){
     inject(function(ccRequest, $httpBackend) {
       
       $httpBackend.expectGET('http://jsonplaceholder.typicode.com/users').respond(200);
       
-      ccRequest.getCountry().then(function(data){
-
+      ccRequest.getCountry().then(function(data) {
         $rootScope.$digest();
         $httpBackend.flush();
         expect(data).toBe(mockCountriesPayload);
-        $httpBackend.verifyNoOutstandingRequest();
       });
     });
   });
 
-it('ccRequest should make a successful request to the capitals endpoint.', function(){
+it('ccRequest should make a successful request from the capitals endpoint.', function(){
     inject(function(ccRequest, $httpBackend) {
       
       $httpBackend.expectGET('http://jsonplaceholder.typicode.com/users').respond(200);
       
-      ccRequest.getCapitals().then(function(data){
-
+      ccRequest.getCapitals().then(function(data) {
         $rootScope.$digest();
         $httpBackend.flush();
         expect(data).toBe(mockCountriesPayload);
-        $httpBackend.verifyNoOutstandingRequest();
       });
     });
   });
 
-it('ccRequest should make a successful request to the neighbors endpoint.', function(){
+it('ccRequest should make a successful request from the neighbors endpoint.', function(){
     inject(function(ccRequest, $httpBackend) {
       
       $httpBackend.expectGET('http://jsonplaceholder.typicode.com/users').respond(200);
       
-      ccRequest.getNeighbors().then(function(data){
-
+      ccRequest.getNeighbors().then(function(data) {
         $rootScope.$digest();
         $httpBackend.flush();
         expect(data).toBe(mockCountriesPayload);
-        $httpBackend.verifyNoOutstandingRequest();
       });
     });
   });
 });
+
+
+
 
 
 
