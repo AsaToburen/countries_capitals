@@ -145,7 +145,6 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 
           var r = [];
 
-
           angular.forEach(c.geonames, function(capital) {
             r.push(capital);
           });
@@ -158,11 +157,9 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 
             r.push(neighbor);
           });
-
           return r;
         }
       };
-
       return c;
     }
   ])
@@ -189,15 +186,12 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 
           country: ['$route', 'ccRequest', function($route, ccRequest) {
             var country = $route.current.params.country;
-
             return ccRequest.getCountry(country);
           }],
 
           capitals: ['$route', 'ccRequest', function($route, ccRequest) {
-
             var country = $route.current.params.country;
             var capital = $route.current.params.capital;
-
             return ccRequest.getCapitals(country, capital);
           }],
 

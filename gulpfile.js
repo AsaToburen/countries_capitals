@@ -22,7 +22,7 @@ gulp.task('imagemin', function () {
             progressive: true,
             svgoPlugins: [{removeViewBox: false}]
         }))
-        .pipe(gulp.dest('build/'));
+        .pipe(gulp.dest('build/images/'));
 });
 
 // add image-min 
@@ -38,9 +38,10 @@ gulp.task('usemin', function() {
 });
 
 gulp.task('compile-sass', function () {
+    
     return sass('./app/css/cc-app.scss')
         // Convert sass into css
-        .pipe(gulp.dest('./app/css/cc-app.css'));
+        .pipe(gulp.src('./app/css/cc-app.css'));
 });
 
 gulp.task('watch', function() {
